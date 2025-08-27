@@ -1,0 +1,39 @@
+.clientMessage {
+  margin: 10px;
+  background-color: rgba(93, 109, 252, 0.584);
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 250px;
+
+  margin-left: auto;
+  justify-content: right;
+
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
+.chat-container {
+  height: 630px;
+}
+.nickName {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+.otherMessages {
+  margin: 10px;
+  background-color: rgba(104, 104, 104, 0.584);
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 200px;
+
+  margin-right: auto;
+  justify-content: left;
+
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
