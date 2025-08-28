@@ -58,5 +58,17 @@
     "type": "notify",
     "user": "124",
     "message": "New user connection! - 124"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "12345",
+    "message": "New user connection! - 12345"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "12345",
+    "message": "New user connection! - 12345"
   }
 ]

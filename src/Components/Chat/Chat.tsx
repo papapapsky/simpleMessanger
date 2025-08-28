@@ -34,10 +34,6 @@ export const Chat = () => {
     ws.onmessage = (event) => {
       const message: IWsMessage = JSON.parse(event.data);
       switch (message.messageType) {
-        case "new user":
-          break;
-        case "user disconnect":
-          break;
         case "new message": {
           if (!message) return false;
           const newMessage: IMessages = {
@@ -73,13 +69,12 @@ export const Chat = () => {
           {historyLoading && <div className="loader"></div>}
           {messages &&
             messages.map((value, index) => (
-              <>
+              <div key={index}>
                 {value.type === "user" ? (
                   <div
                     className={
                       value.user === client ? "clientMessage" : "otherMessages"
                     }
-                    key={index}
                   >
                     <div className="nickName">{value.user}</div>
                     <p className="text-left">{value.message}</p>
@@ -91,7 +86,7 @@ export const Chat = () => {
                     </h3>
                   </div>
                 )}
-              </>
+              </div>
             ))}
           <div ref={chatRef}></div>
         </div>
