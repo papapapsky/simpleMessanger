@@ -4,8 +4,9 @@ import "./chat.css";
 import { useEffect, useRef, useState } from "react";
 import { getMessageHistory } from "./components/httpRequests/getMessageHistory";
 import { sendMessage } from "./components/wsRequests/sendMessage";
+import { onmessage } from "./components/wsRequests/onmessage";
 
-import type { IMessages, IWsMessage } from "./types/types";
+import type { IMessages } from "./types/types";
 
 export const Chat = () => {
   const [historyLoading, setHistoryLoading] = useState<boolean>(false);
@@ -32,22 +33,7 @@ export const Chat = () => {
     };
 
     ws.onmessage = (event) => {
-      const message: IWsMessage = JSON.parse(event.data);
-      switch (message.messageType) {
-        case "new message": {
-          if (!message) return false;
-          const newMessage: IMessages = {
-            messageType: message.type,
-            type: message.type,
-            user: message.user,
-            message: message.message,
-          };
-          setMessages((prevMessages) => [...prevMessages, newMessage]);
-          break;
-        }
-        default:
-          console.log("undefined type -", message.type);
-      }
+      onmessage({ event, setMessages });
     };
 
     return () => {

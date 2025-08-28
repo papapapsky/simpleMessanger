@@ -70,5 +70,161 @@
     "type": "notify",
     "user": "12345",
     "message": "New user connection! - 12345"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "125zxf",
+    "message": "New user connection! - 125zxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "125zxf",
+    "message": "saf"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "Gleb",
+    "message": "New user connection! - Gleb"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "Vsem hi"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "zxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "123"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "sszf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "gs"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "123"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "zxc"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "vba"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "125"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "zxc"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "s"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "a"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "zvx",
+    "message": "New user connection! - zvx"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "Gleb",
+    "message": "asdasd"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "zvx",
+    "message": "zxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "zvx",
+    "message": "1254"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "zvx",
+    "message": "125zx"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "asd",
+    "message": "New user connection! - asd"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "asfd",
+    "message": "New user connection! - asfd"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "ad",
+    "message": "New user connection! - ad"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "asd",
+    "message": "New user connection! - asd"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "asd",
+    "message": "New user connection! - asd"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "asd",
+    "message": "New user connection! - asd"
   }
 ]
