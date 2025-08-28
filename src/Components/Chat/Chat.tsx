@@ -2,31 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { store } from "../../store";
 import "./chat.css";
 import { useEffect, useRef, useState } from "react";
+import { getMessageHistory } from "./components/httpRequests/getMessageHistory";
+import { sendMessage } from "./components/wsRequests/sendMessage";
 
-type messageHistoryType = {
-  user: string;
-  message: string;
-};
-
-interface IWsMessage {
-  type: "new user" | "user disconnect" | "new message";
-  status: boolean;
-  user: string;
-  message: string;
-}
-
-interface IMessages {
-  user: string;
-  message: string;
-}
-
-interface ISendMessage {
-  type: "send message";
-  user: string;
-  message: string;
-}
+import type { IMessages, IWsMessage } from "./types/types";
 
 export const Chat = () => {
+  const [historyLoading, setHistoryLoading] = useState<boolean>(false);
   const [client, setClient] = useState<string>("");
   const [messages, setMessages] = useState<IMessages[]>([]);
   const messageRef = useRef<HTMLInputElement>(null);
@@ -40,31 +22,31 @@ export const Chat = () => {
       navigate("/");
       return;
     }
-    const ws = new WebSocket(`ws://31.169.124.125:3000?name=${userName}`);
+    setHistoryLoading(true);
+    const ws = new WebSocket(`ws://localhost:3000?name=${userName}`);
     wsRef.current = ws;
     setClient(userName);
 
     ws.onopen = () => {
-      getMessageHistory();
+      getMessageHistory({ setMessages, chatRef, setHistoryLoading });
     };
 
     ws.onmessage = (event) => {
       const message: IWsMessage = JSON.parse(event.data);
-      switch (message.type) {
+      switch (message.messageType) {
         case "new user":
-          console.log(message);
           break;
         case "user disconnect":
-          console.log("user disconnect");
           break;
         case "new message": {
           if (!message) return false;
           const newMessage: IMessages = {
+            messageType: message.type,
+            type: message.type,
             user: message.user,
             message: message.message,
           };
           setMessages((prevMessages) => [...prevMessages, newMessage]);
-          console.log(message);
           break;
         }
         default:
@@ -84,61 +66,32 @@ export const Chat = () => {
     }
   }, [messages]);
 
-  const sendMessage = () => {
-    if (
-      messageRef.current &&
-      messageRef.current.value !== "" &&
-      wsRef.current
-    ) {
-      const ws = wsRef.current;
-
-      const sendMessage: ISendMessage = {
-        type: "send message",
-        user: client,
-        message: messageRef.current.value,
-      };
-
-      ws.send(JSON.stringify(sendMessage));
-      messageRef.current.value = "";
-    }
-  };
-
-  const getMessageHistory = async () => {
-    try {
-      const response: messageHistoryType[] = await fetch(
-        "http://31.169.124.125:3000/getMessageHistory"
-      ).then((data) => data.json());
-
-      if (response) {
-        setMessages(response);
-        setTimeout(() => {
-          chatRef.current?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <main className="flex-1 p-6 max-w-5xl mx-auto w-full">
       <div className="chat-container bg-gray-800 rounded-xl shadow-2xl flex flex-col border border-gray-700">
         <div className="flex-1 p-4 overflow-y-auto">
+          {historyLoading && <div className="loader"></div>}
           {messages &&
             messages.map((value, index) => (
-              <div
-                className={
-                  value.user === client ? "clientMessage" : "otherMessages"
-                }
-                key={index}
-              >
-                <div className="nickName">{value.user}</div>
-                <p
-                  className={value.user === client ? "text-left" : "text-right"}
-                >
-                  {value.message}
-                </p>
-              </div>
+              <>
+                {value.type === "user" ? (
+                  <div
+                    className={
+                      value.user === client ? "clientMessage" : "otherMessages"
+                    }
+                    key={index}
+                  >
+                    <div className="nickName">{value.user}</div>
+                    <p className="text-left">{value.message}</p>
+                  </div>
+                ) : (
+                  <div className="userNotify">
+                    <h3 className="ml-[25%] mr-[25%] text-center">
+                      {value.message}
+                    </h3>
+                  </div>
+                )}
+              </>
             ))}
           <div ref={chatRef}></div>
         </div>
@@ -152,7 +105,7 @@ export const Chat = () => {
               className="flex-1 bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent min-w-5"
             />
             <button
-              onClick={() => sendMessage()}
+              onClick={() => sendMessage({ messageRef, wsRef, client })}
               className="cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
               Send

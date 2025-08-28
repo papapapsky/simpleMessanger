@@ -1,20 +1,25 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setUserName, store } from "../../store";
 import { Footer } from "../Footer/Footer";
+import "./loader.css";
 
 type serverResponse = { status: boolean };
 
 export const Login = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const nameRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   const connectToChat = async () => {
     if (nameRef.current && nameRef.current.value !== "") {
       try {
+        setLoading(true);
+        setError("");
         const userName = nameRef.current.value;
         const findSameUser: serverResponse = await fetch(
-          `http://31.169.124.125:3000/getSomeUser?name=${userName}`
+          `http://localhost:3000/getSomeUser?name=${userName}`
         ).then((data) => data.json());
 
         if (findSameUser.status) {
@@ -22,10 +27,13 @@ export const Login = () => {
           store.dispatch(setUserName({ name: userName }));
           navigate("/Chat");
         } else {
-          console.log("found");
+          setError("Failed to connect. This name alredy using in chat.");
         }
       } catch (err) {
+        setError("Failed to connect. Check your intenret connection.");
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -49,6 +57,14 @@ export const Login = () => {
           >
             Join Chat
           </button>
+          {error && (
+            <h3 className="text-xl text-red-500 text-center">{error}</h3>
+          )}
+          {loading && (
+            <div className="flex gap-3.5">
+              <span className="dotLoader"></span>
+            </div>
+          )}
         </div>
       </div>
       <Footer />

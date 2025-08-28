@@ -1,0 +1,62 @@
+[
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "123",
+    "message": "New user connection! - 123"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "zxf",
+    "message": "New user connection! - zxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "123",
+    "message": "New user connection! - 123"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "123",
+    "message": "New user connection! - 123"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "123",
+    "message": "New user connection! - 123"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "123",
+    "message": "New user connection! - 123"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "123",
+    "message": "zxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "user": "zxf",
+    "message": "125"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "asf",
+    "message": "New user connection! - asf"
+  },
+  {
+    "messageType": "new message",
+    "type": "notify",
+    "user": "124",
+    "message": "New user connection! - 124"
+  }
+]
