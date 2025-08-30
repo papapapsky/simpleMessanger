@@ -9,6 +9,7 @@ export type clientTypeMsg = {
 export type messageHistoryType = {
   messageType: "new message" | "user disconnect" | "new user";
   type: "notify" | "user";
+  time: string;
   user?: string;
   status?: boolean;
   name?: string;

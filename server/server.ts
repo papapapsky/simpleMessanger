@@ -30,6 +30,16 @@ const wss = new WebSocketServer({ server });
 
 let clients: client[] = [];
 
+const curretDate = () => {
+  const date = new Date();
+
+  if (date.getUTCMinutes() < 10) {
+    return `${date.getUTCHours()}:0${date.getUTCMinutes()}`;
+  } else {
+    return `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+  }
+};
+
 //WEBSOKCET
 wss.on("connection", async (ws: WebSocket, req: any) => {
   if (!req.url) {
@@ -43,7 +53,11 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
   const query: urlParams = url.parse(req.url, true).query;
   if (!query.name) return;
 
+  const dateOnConnection = curretDate();
+  console.log(dateOnConnection);
+
   const connectNotify: messageHistoryType = {
+    time: dateOnConnection,
     messageType: "new message",
     type: "notify",
     user: query.name,
@@ -77,13 +91,16 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
       case "send message": {
         const messages = await fs.readFile(messagesSrc, "utf-8");
         const parsedMessages: messageHistoryType[] = JSON.parse(messages);
+        const dateOnMessage = curretDate();
 
         const newMessage: messageHistoryType = {
           messageType: "new message",
           type: "user",
+          time: dateOnMessage,
           user: message.user,
           message: message.message,
         };
+        console.log(newMessage.time);
 
         parsedMessages.push(newMessage);
         await fs.writeFile(
@@ -122,9 +139,12 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
 
   ws.on("close", () => {
     if (!query.name) return;
+    const dateOnDisconnect = curretDate();
+
     const userLeaveMessage: messageHistoryType = {
       messageType: "new message",
       type: "notify",
+      time: dateOnDisconnect,
       status: true,
       message: `${query.name} disconnected from chat`,
     };

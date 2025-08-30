@@ -3,18 +3,22 @@ import { store } from "../../store";
 import "./chat.css";
 import { useEffect, useRef, useState } from "react";
 import { getMessageHistory } from "./components/httpRequests/getMessageHistory";
-import { sendMessage } from "./components/wsRequests/sendMessage";
+import { SendForm } from "./components/layout/SendForm";
 import { onmessage } from "./components/wsRequests/onmessage";
+import { Scroller } from "./components/scroller/Scroller";
+import { Messages } from "./components/layout/Messages";
 
 import type { IMessages } from "./types/types";
 
 export const Chat = () => {
+  const WS_API_URL = import.meta.env.VITE_API_WS_URL;
   const [historyLoading, setHistoryLoading] = useState<boolean>(false);
   const [client, setClient] = useState<string>("");
   const [messages, setMessages] = useState<IMessages[]>([]);
   const messageRef = useRef<HTMLInputElement>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const chatRef = useRef<HTMLDivElement>(null);
+  const chatScrolleRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +28,7 @@ export const Chat = () => {
       return;
     }
     setHistoryLoading(true);
-    const ws = new WebSocket(`ws://localhost:3000?name=${userName}`);
+    const ws = new WebSocket(`${WS_API_URL}?name=${userName}`);
     wsRef.current = ws;
     setClient(userName);
 
@@ -37,7 +41,9 @@ export const Chat = () => {
     };
 
     return () => {
-      ws.send(JSON.stringify({ type: "disconnect", user: userName }));
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: "disconnect", user: userName }));
+      }
     };
   }, []);
 
@@ -49,50 +55,21 @@ export const Chat = () => {
   }, [messages]);
 
   return (
-    <main className="flex-1 p-6 max-w-5xl mx-auto w-full">
+    <main className="flex-1 p-6 max-w-5xl mx-auto w-full relative">
       <div className="chat-container bg-gray-800 rounded-xl shadow-2xl flex flex-col border border-gray-700">
-        <div className="flex-1 p-4 overflow-y-auto">
+        <div className="chat flex-1 p-4 overflow-y-auto" ref={chatScrolleRef}>
           {historyLoading && <div className="loader"></div>}
           {messages &&
             messages.map((value, index) => (
               <div key={index}>
-                {value.type === "user" ? (
-                  <div
-                    className={
-                      value.user === client ? "clientMessage" : "otherMessages"
-                    }
-                  >
-                    <div className="nickName">{value.user}</div>
-                    <p className="text-left">{value.message}</p>
-                  </div>
-                ) : (
-                  <div className="userNotify">
-                    <h3 className="ml-[25%] mr-[25%] text-center">
-                      {value.message}
-                    </h3>
-                  </div>
-                )}
+                <Messages value={value} client={client} />
               </div>
             ))}
+          <Scroller box={chatScrolleRef} />
           <div ref={chatRef}></div>
         </div>
 
-        <div className="p-4 border-t border-gray-700 bg-gray-800 rounded-b-xl">
-          <div className="flex space-x-2 flex-wrap content-center gap-5">
-            <input
-              ref={messageRef}
-              type="text"
-              placeholder="Type your message..."
-              className="flex-1 bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent min-w-5"
-            />
-            <button
-              onClick={() => sendMessage({ messageRef, wsRef, client })}
-              className="cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
-            >
-              Send
-            </button>
-          </div>
-        </div>
+        <SendForm messageRef={messageRef} wsRef={wsRef} client={client} />
       </div>
     </main>
   );

@@ -1,5 +1,6 @@
 .clientMessage {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: rgba(93, 109, 252, 0.584);
   padding: 10px;
   border-radius: 8px;
@@ -26,11 +27,10 @@
 }
 
 .userNotify {
-  text-align: left;
+  padding: 7px 10px 7px 10px;
   margin: 10px auto;
   border-radius: 10px;
-  display: block;
-  width: 50%;
+  text-align: center;
   background-color: rgba(0, 0, 0, 0.47);
 }
 
@@ -49,8 +49,31 @@
   }
 }
 
+.chat::-webkit-scrollbar {
+  border-radius: 5px;
+}
+
+.chat::-webkit-scrollbar-track {
+  border: 3px solid #53467ee4;
+  background-color: #ab92ff;
+  border-radius: 5px;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  border: 3px solid #3b3b3be4;
+  background-color: #6f44ff;
+  border-radius: 10px;
+}
+
+.chat::-webkit-scrollbar-thumb:hover {
+  border: 3px solid #3b3b3be4;
+  background-color: #8661ff;
+}
+
 .chat-container {
   height: 630px;
+  padding-left: 7vw;
+  padding-right: 7vw;
 }
 .nickName {
   background-color: rgba(255, 255, 255, 0.2);
@@ -58,11 +81,11 @@
   border-radius: 4px;
   display: inline-block;
   width: 100%;
-  border-bottom: 2px solid black;
 }
 
 .otherMessages {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: rgba(104, 104, 104, 0.584);
   padding: 10px;
   border-radius: 8px;
@@ -73,4 +96,8 @@
 
   overflow-x: hidden;
   word-wrap: break-word;
+}
+
+.timeDisplay {
+  color: rgba(255, 255, 255, 0.513);
 }
