@@ -54,7 +54,6 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
   if (!query.name) return;
 
   const dateOnConnection = curretDate();
-  console.log(dateOnConnection);
 
   const connectNotify: messageHistoryType = {
     time: dateOnConnection,
@@ -161,12 +160,41 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
 //EXPRESS
 app.get("/getSomeUser", (req: Request, res: Response) => {
   const userName: userQuery = req.query;
+  if (!userName.name)
+    return res
+      .status(400)
+      .json({ status: false, message: "Please, write your name!" });
+  if (userName.name?.length > 16) {
+    console.log("asdasd");
+    return res.status(400).json({
+      status: false,
+      message: "The name must be less than 16 letters!",
+    });
+  }
+
   const findUser = clients.find((user) => user.name === userName.name);
   if (!findUser) {
     console.log(findUser);
     res.status(200).json({ status: true });
   } else {
-    res.status(403).json({ status: false });
+    res.status(403).json({
+      status: false,
+      message: "Failed to connect. This name alredy using in chat.",
+    });
+  }
+});
+
+app.get("/getActiveUsers", (req: Request, res: Response) => {
+  if (clients.length > 0) {
+    const usersArray: string[] = [];
+
+    clients.forEach((user) => {
+      usersArray.push(String(user.name));
+    });
+    console.log(usersArray);
+    res.status(200).json({ status: true, users: usersArray });
+  } else {
+    res.status(400).json({ status: false, message: "Failed to load users" });
   }
 });
 

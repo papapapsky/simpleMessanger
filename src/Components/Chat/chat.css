@@ -3,7 +3,9 @@
   margin-bottom: 10px;
   background-color: rgba(93, 109, 252, 0.584);
   padding: 10px;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
   max-width: 250px;
 
   margin-left: auto;
@@ -88,7 +90,10 @@
   margin-bottom: 10px;
   background-color: rgba(104, 104, 104, 0.584);
   padding: 10px;
-  border-radius: 8px;
+
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   max-width: 200px;
 
   margin-right: auto;

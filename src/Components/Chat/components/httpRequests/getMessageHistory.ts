@@ -13,9 +13,11 @@ export const getMessageHistory = async ({
   setHistoryLoading,
 }: props) => {
   try {
+    const API_HTTP_URL = import.meta.env.VITE_API_HTTP_URL;
+    console.log(API_HTTP_URL);
     setHistoryLoading(true);
     const response: messageHistoryType[] = await fetch(
-      "http://localhost:3000/getMessageHistory"
+      `${API_HTTP_URL}/getMessageHistory`
     ).then((data) => data.json());
 
     if (response) {
