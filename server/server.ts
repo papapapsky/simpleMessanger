@@ -124,6 +124,7 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
           status: true,
           message: `${query.name} disconnected from chat`,
         };
+
         wss.clients.forEach((user: WebSocket) => {
           if (user.readyState === WebSocket.OPEN) {
             user.send(JSON.stringify(userLeaveMessage));
@@ -136,7 +137,7 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
     }
   });
 
-  ws.on("close", () => {
+  ws.on("close", async () => {
     if (!query.name) return;
     const dateOnDisconnect = curretDate();
 
@@ -147,6 +148,11 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
       status: true,
       message: `${query.name} disconnected from chat`,
     };
+
+    const userHistory = await fs.readFile(messagesSrc, "utf-8");
+    const parsedHistory: messageHistoryType[] = JSON.parse(userHistory);
+    parsedHistory.push(userLeaveMessage);
+    await fs.writeFile(messagesSrc, JSON.stringify(parsedHistory, null, 2));
 
     clients = clients.filter((user) => user.userInfo !== ws);
     wss.clients.forEach((user: WebSocket) => {

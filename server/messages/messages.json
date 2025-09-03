@@ -1,303 +1,51 @@
 [
   {
-    "time": "11:46",
     "messageType": "new message",
     "type": "notify",
-    "user": "Gleb",
-    "message": "New user connection! - Gleb"
+    "time": "14:46",
+    "status": true,
+    "message": "asf disconnected from chat"
   },
   {
-    "time": "11:46",
+    "time": "14:47",
     "messageType": "new message",
     "type": "notify",
-    "user": "Sasha",
-    "message": "New user connection! - Sasha"
+    "user": "125",
+    "message": "New user connection! - 125"
   },
   {
-    "messageType": "new message",
-    "type": "user",
-    "time": "11:46",
-    "user": "Sasha",
-    "message": "Hi dude"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "11:46",
-    "user": "Gleb",
-    "message": "Hello"
-  },
-  {
-    "time": "17:11",
     "messageType": "new message",
     "type": "notify",
-    "user": "Gleb",
-    "message": "New user connection! - Gleb"
+    "time": "14:47",
+    "status": true,
+    "message": "125 disconnected from chat"
   },
   {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:11",
-    "user": "Gleb",
-    "message": "asd"
-  },
-  {
-    "time": "17:16",
+    "time": "14:47",
     "messageType": "new message",
     "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
+    "user": "125",
+    "message": "New user connection! - 125"
   },
   {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:24",
-    "user": "ывр",
-    "message": "zxf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:24",
-    "user": "ывр",
-    "message": "asf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:24",
-    "user": "ывр",
-    "message": "sfa"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:24",
-    "user": "ывр",
-    "message": "125"
-  },
-  {
-    "time": "17:28",
     "messageType": "new message",
     "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
+    "time": "14:47",
+    "status": true,
+    "message": "125 disconnected from chat"
   },
   {
-    "time": "17:28",
+    "time": "14:47",
     "messageType": "new message",
     "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
+    "user": "125",
+    "message": "New user connection! - 125"
   },
   {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:29",
-    "user": "ывр",
-    "message": "asfasf"
-  },
-  {
-    "time": "17:30",
     "messageType": "new message",
     "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:31",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:31",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:32",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:33",
-    "user": "ывр",
-    "message": "asf"
-  },
-  {
-    "time": "17:34",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:34",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:34",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:40",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:40",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:42",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:42",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:42",
-    "user": "ывр",
-    "message": "zxf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:42",
-    "user": "ывр",
-    "message": "125"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:42",
-    "user": "ывр",
-    "message": "яча"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:42",
-    "user": "ывр",
-    "message": "asd"
-  },
-  {
-    "time": "17:43",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:43",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:44",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:44",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "time": "17:44",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "ывр",
-    "message": "New user connection! - ывр"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:44",
-    "user": "ывр",
-    "message": "xcg"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:44",
-    "user": "ывр",
-    "message": "g"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:44",
-    "user": "ывр",
-    "message": "125"
-  },
-  {
-    "time": "17:44",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "zxf",
-    "message": "New user connection! - zxf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:44",
-    "user": "zxf",
-    "message": "HI"
-  },
-  {
-    "time": "17:45",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "Gleb",
-    "message": "New user connection! - Gleb"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:45",
-    "user": "Gleb",
-    "message": "clear"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "17:46",
-    "user": "Gleb",
-    "message": "Chat engine"
+    "time": "14:47",
+    "status": true,
+    "message": "125 disconnected from chat"
   }
 ]

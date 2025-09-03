@@ -1,57 +1,31 @@
 import { createPortal } from "react-dom";
 import "./modal.css";
 import { useEffect, useState } from "react";
+import type { IActiveUsersModalProps } from "./types/propsTypes";
+import { getActiveUsers } from "./functions/getActiveUsers";
 
-type props = {
-  client: string;
-  active: boolean;
-  setActive: (active: boolean) => void;
-};
-
-type responseType = {
-  status: boolean;
-  users: string[];
-  message: string;
-};
-
-export const ActiveUsersModal = ({ active, setActive, client }: props) => {
-  const API_HTTP_URL = import.meta.env.VITE_API_HTTP_URL;
+export const ActiveUsersModal = ({
+  active,
+  setActive,
+  client,
+  animation,
+  setAnimation,
+}: IActiveUsersModalProps) => {
   const modalElemet = document.getElementById("modal") as HTMLDivElement;
   const [users, setUsers] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-
   useEffect(() => {
-    const getActiveUsers = async () => {
-      try {
-        setLoading(true);
-        setError("");
-        const response: responseType = await fetch(
-          `${API_HTTP_URL}/getActiveUsers`
-        ).then((data) => data.json());
-
-        if (response.status && response.users.length > 0) {
-          setUsers(response.users);
-          setError("");
-        } else {
-          console.log(response.status);
-          setError(response.message);
-        }
-      } catch (err) {
-        setError("Failed to load users");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getActiveUsers();
+    getActiveUsers({ setUsers, setError, setLoading });
   }, []);
 
   return (
     <>
       {active &&
         createPortal(
-          <div className="modalParent fixed w-[100%] h-[100vh] z-10">
+          <div
+            className={`modalParent fixed w-[100%] h-[100vh] z-10 ${animation}`}
+          >
             <div className="usersContainer">
               <h2 className="text-2xl mb-5 text-center">Active users:</h2>
               <div className="users gap-5">
@@ -78,19 +52,43 @@ export const ActiveUsersModal = ({ active, setActive, client }: props) => {
                         </svg>
                       </div>
                     </div>
-                    <div className="block">
-                      <div className="text-purple-300 font-medium text-left">
-                        {user === client ? `${user} (You)` : user}
+                    <div className="block wrap-break-word overflow-x-hidden">
+                      <div className="text-purple-300 font-medium text-left w-auto">
+                        <p>{user === client ? `${user} (You)` : user}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              {error && <h2>error</h2>}
-              {loading && <div className="loader m-auto"></div>}
+              {error && (
+                <h2 className="text-xl text-red-500 text-center">{error}</h2>
+              )}
+              {loading ? (
+                <div className="loader m-auto"></div>
+              ) : (
+                <button
+                  className="cursor-pointer m-auto mt-5 w-35 
+                bg-gradient-to-r from-green-600 to-indigo-600
+                 hover:from-green-700 hover:to-indigo-700 
+                 text-white px-6 py-3 rounded-lg transition-all 
+                 duration-200 transform hover:scale-105 shadow-lg"
+                  onClick={() =>
+                    getActiveUsers({ setUsers, setError, setLoading })
+                  }
+                >
+                  Update
+                </button>
+              )}
               <button
-                onClick={() => setActive(!active)}
-                className="cursor-pointer m-auto mt-5 w-25 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+                onClick={() => {
+                  setActive(!active);
+                  setAnimation("");
+                }}
+                className="cursor-pointer m-auto mt-5 w-25 
+                bg-gradient-to-r from-purple-600 to-indigo-600
+                 hover:from-purple-700 hover:to-indigo-700 
+                 text-white px-6 py-3 rounded-lg transition-all 
+                 duration-200 transform hover:scale-105 shadow-lg"
               >
                 Close
               </button>

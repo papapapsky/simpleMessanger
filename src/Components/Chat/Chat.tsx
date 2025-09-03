@@ -9,11 +9,12 @@ import { Scroller } from "./components/scroller/Scroller";
 import { Messages } from "./components/layout/Messages";
 import { ActiveUsersModal } from "./components/modal/ActiveUsersModal";
 
-import type { IMessages } from "./types/types";
+import type { IMessages, animationType } from "./types/types";
 import { EraseChatConfirm } from "./components/modal/EraseChatConfirm";
 
 export const Chat = () => {
   const WS_API_URL = import.meta.env.VITE_API_WS_URL;
+  const [animation, setAnimation] = useState<animationType>("");
   const [usersModal, setUsersModal] = useState<boolean>(false);
   const [eraseChatModal, setEraseChatModal] = useState<boolean>(false);
   const [historyLoading, setHistoryLoading] = useState<boolean>(false);
@@ -62,16 +63,20 @@ export const Chat = () => {
     <>
       {usersModal && (
         <ActiveUsersModal
+          animation={animation}
           client={client}
           active={usersModal}
           setActive={setUsersModal}
+          setAnimation={setAnimation}
         />
       )}
       {eraseChatModal && (
         <EraseChatConfirm
+          animation={animation}
           setMessages={setMessages}
           active={eraseChatModal}
           setActive={setEraseChatModal}
+          setAnimation={setAnimation}
         />
       )}
       <main className="flex-1 p-6 max-w-5xl mx-auto w-full relative">
@@ -79,7 +84,7 @@ export const Chat = () => {
           <div className="chat flex-1 p-4 overflow-y-auto" ref={chatScrolleRef}>
             {historyLoading && <div className="loader"></div>}
             {messages.length === 0 && (
-              <h2 className="text-2xl text-gray-500/[.50] mt-auto">Empty</h2>
+              <h2 className="text-2xl text-gray-500/[.50] ">Empty</h2>
             )}
             {messages &&
               messages.map((value, index) => (
@@ -98,6 +103,7 @@ export const Chat = () => {
             setUsersModal={setUsersModal}
             eraseChatModal={eraseChatModal}
             setEraseChatModal={setEraseChatModal}
+            setAnimation={setAnimation}
           />
         </div>
       </main>

@@ -85,6 +85,19 @@
   width: 100%;
 }
 
+.showAnimation {
+  animation: showAnimation 0.3s ease forwards;
+}
+
+@keyframes showAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .otherMessages {
   margin-top: 10px;
   margin-bottom: 10px;

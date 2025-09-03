@@ -1,10 +1,6 @@
-import type { IMessages } from "../../types/types";
-interface IProps {
-  value: IMessages;
-  client: string;
-}
+import type { MessagesPropsType } from "./types/propsTypes";
 
-export const Messages = ({ value, client }: IProps) => {
+export const Messages = ({ value, client }: MessagesPropsType) => {
   return (
     <>
       {value.type === "user" ? (

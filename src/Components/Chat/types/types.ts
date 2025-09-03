@@ -22,3 +22,5 @@ export interface ISendMessage {
   user: string;
   message: string;
 }
+
+export type animationType = "showAnimation" | "";
