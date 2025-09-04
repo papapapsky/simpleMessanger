@@ -3,6 +3,7 @@ import { Header } from "./Components/Header/Header";
 import { Chat } from "./Components/Chat/Chat";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./Components/Login/Login";
+import { NotFoundPage } from "./Components/NotFoundPage/NotFoundPage";
 export const App = () => {
   return (
     <>
@@ -10,6 +11,7 @@ export const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" index element={<Login />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route path="/Chat" index element={<Chat />} />
         </Routes>
       </BrowserRouter>

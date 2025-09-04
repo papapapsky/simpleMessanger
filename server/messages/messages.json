@@ -2,50 +2,99 @@
   {
     "messageType": "new message",
     "type": "notify",
-    "time": "14:46",
+    "time": "15:26",
     "status": true,
-    "message": "asf disconnected from chat"
+    "message": "1254 disconnected from chat"
   },
   {
-    "time": "14:47",
+    "time": "15:26",
     "messageType": "new message",
     "type": "notify",
-    "user": "125",
-    "message": "New user connection! - 125"
+    "user": "zxf",
+    "message": "New user connection! - zxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "time": "15:26",
+    "user": "zxf",
+    "message": "zxfxzfxzf"
   },
   {
     "messageType": "new message",
     "type": "notify",
-    "time": "14:47",
+    "time": "15:26",
     "status": true,
-    "message": "125 disconnected from chat"
+    "message": "zxf disconnected from chat"
   },
   {
-    "time": "14:47",
+    "time": "15:26",
     "messageType": "new message",
     "type": "notify",
-    "user": "125",
-    "message": "New user connection! - 125"
-  },
-  {
-    "messageType": "new message",
-    "type": "notify",
-    "time": "14:47",
-    "status": true,
-    "message": "125 disconnected from chat"
-  },
-  {
-    "time": "14:47",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "125",
-    "message": "New user connection! - 125"
+    "user": "zxf",
+    "message": "New user connection! - zxf"
   },
   {
     "messageType": "new message",
+    "type": "user",
+    "time": "15:26",
+    "user": "zxf",
+    "message": "21"
+  },
+  {
+    "time": "15:27",
+    "messageType": "new message",
     "type": "notify",
-    "time": "14:47",
-    "status": true,
-    "message": "125 disconnected from chat"
+    "user": "zxf",
+    "message": "New user connection! - zxf"
+  },
+  {
+    "time": "15:28",
+    "messageType": "new message",
+    "type": "notify",
+    "user": "zxf",
+    "message": "New user connection! - zxf"
+  },
+  {
+    "time": "15:28",
+    "messageType": "new message",
+    "type": "notify",
+    "user": "5125125",
+    "message": "New user connection! - 5125125"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "time": "15:28",
+    "user": "zxf",
+    "message": "12"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "time": "15:28",
+    "user": "zxf",
+    "message": "xzfzxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "time": "15:28",
+    "user": "zxf",
+    "message": "zxf"
+  },
+  {
+    "time": "15:28",
+    "messageType": "new message",
+    "type": "notify",
+    "user": "zxf",
+    "message": "New user connection! - zxf"
+  },
+  {
+    "messageType": "new message",
+    "type": "user",
+    "time": "15:28",
+    "user": "zxf",
+    "message": "xzfzxf"
   }
 ]

@@ -59,6 +59,7 @@ export const SendForm = ({
               <div className="flex flex-col gap-2 mt-2 w-full absolute bottom-15">
                 <button
                   onClick={() => {
+                    setShowExtraButtons(false);
                     setUsersModal(!usersModal);
                     setAnimation("showAnimation");
                   }}
@@ -68,6 +69,7 @@ export const SendForm = ({
                 </button>
                 <button
                   onClick={() => {
+                    setShowExtraButtons(false);
                     setEraseChatModal(!eraseChatModal);
                     setAnimation("showAnimation");
                   }}
@@ -77,6 +79,7 @@ export const SendForm = ({
                 </button>
                 <button
                   onClick={() => {
+                    setShowExtraButtons(false);
                     setAnimation("showAnimation");
                     navigate("/");
                   }}
@@ -91,6 +94,7 @@ export const SendForm = ({
           <>
             <button
               onClick={() => {
+                setShowExtraButtons(false);
                 setUsersModal(!usersModal);
                 setAnimation("showAnimation");
               }}
@@ -101,6 +105,7 @@ export const SendForm = ({
             <div className="flex ml-auto gap-5">
               <button
                 onClick={() => {
+                  setShowExtraButtons(false);
                   setEraseChatModal(!eraseChatModal);
                   setAnimation("showAnimation");
                 }}
@@ -110,6 +115,7 @@ export const SendForm = ({
               </button>
               <button
                 onClick={() => {
+                  setShowExtraButtons(false);
                   setAnimation("showAnimation");
                   navigate("/");
                 }}

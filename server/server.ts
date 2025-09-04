@@ -78,13 +78,11 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
   wss.clients.forEach((user: WebSocket) => {
     if (user.readyState === WebSocket.OPEN) {
       user.send(JSON.stringify(connectNotify));
-      console.log("sended");
     }
   });
 
   ws.on("message", async (data: string) => {
     const message: clientTypeMsg = JSON.parse(data);
-    console.log(message);
 
     switch (message.type) {
       case "send message": {
@@ -99,7 +97,6 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
           user: message.user,
           message: message.message,
         };
-        console.log(newMessage.time);
 
         parsedMessages.push(newMessage);
         await fs.writeFile(
@@ -132,8 +129,37 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
         });
         break;
       }
+      case "edit message": {
+        if (message.message === "") return;
+        const messagesList = await fs.readFile(messagesSrc, "utf-8");
+        const parsedList: messageHistoryType[] = JSON.parse(messagesList);
+        parsedList.forEach((user) => {
+          if (
+            user.message === message.messageToEdit &&
+            user.user === message.user
+          ) {
+            user.message = message.message;
+            return;
+          }
+        });
+        console.log(parsedList);
+        await fs.writeFile(messagesSrc, JSON.stringify(parsedList, null, 2));
+
+        const messageToEdit = {
+          messageType: "edit message",
+          newEditedMessages: parsedList,
+        };
+
+        wss.clients.forEach((user) => {
+          if (user.readyState === WebSocket.OPEN) {
+            user.send(JSON.stringify(messageToEdit));
+          }
+        });
+        break;
+      }
+
       default:
-        console.log("invalid type");
+        console.log("invalid type -", message.type);
     }
   });
 
@@ -171,7 +197,6 @@ app.get("/getSomeUser", (req: Request, res: Response) => {
       .status(400)
       .json({ status: false, message: "Please, write your name!" });
   if (userName.name?.length > 16) {
-    console.log("asdasd");
     return res.status(400).json({
       status: false,
       message: "The name must be less than 16 letters!",
@@ -180,7 +205,6 @@ app.get("/getSomeUser", (req: Request, res: Response) => {
 
   const findUser = clients.find((user) => user.name === userName.name);
   if (!findUser) {
-    console.log(findUser);
     res.status(200).json({ status: true });
   } else {
     res.status(403).json({
@@ -197,7 +221,6 @@ app.get("/getActiveUsers", (req: Request, res: Response) => {
     clients.forEach((user) => {
       usersArray.push(String(user.name));
     });
-    console.log(usersArray);
     res.status(200).json({ status: true, users: usersArray });
   } else {
     res.status(400).json({ status: false, message: "Failed to load users" });

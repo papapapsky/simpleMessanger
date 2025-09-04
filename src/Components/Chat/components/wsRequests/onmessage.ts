@@ -1,7 +1,8 @@
-import type { IMessages, IWsMessage } from "../../types/types";
+import type { editMessageType, IMessages, IWsMessage } from "../../types/types";
 import { clientDate } from "./clientDate";
 
 interface props {
+  editMessageModal: editMessageType;
   event: any;
   setMessages: React.Dispatch<React.SetStateAction<IMessages[]>>;
 }
@@ -21,6 +22,13 @@ export const onmessage = ({ event, setMessages }: props) => {
         message: message.message,
       };
       setMessages((prevMessages) => [...prevMessages, newMessage]);
+      break;
+    }
+
+    case "edit message": {
+      if (!message) return false;
+      console.log;
+      setMessages(message.newEditedMessages as any);
       break;
     }
     default:

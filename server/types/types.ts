@@ -2,8 +2,9 @@ import WebSocket from "ws";
 
 export type clientTypeMsg = {
   user: string;
-  type: "send message" | "disconnect";
+  type: "send message" | "disconnect" | "edit message";
   message: string;
+  messageToEdit: string;
 };
 
 export type messageHistoryType = {

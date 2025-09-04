@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import type { animationType } from "../../../types/types";
+import type { animationType, editMessageType } from "../../../types/types";
 import type { IMessages } from "../../../types/types";
 
 export interface ISendFormProps {
@@ -14,6 +14,8 @@ export interface ISendFormProps {
 }
 
 export type MessagesPropsType = {
+  editMessageModal: editMessageType;
+  setEditMessageModal: (eraseChatModal: editMessageType) => void;
   value: IMessages;
   client: string;
 };

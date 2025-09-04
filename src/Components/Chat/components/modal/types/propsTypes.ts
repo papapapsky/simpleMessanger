@@ -1,7 +1,8 @@
-import type { animationType } from "../../../types/types";
+import type { RefObject } from "react";
+import type { animationType, editMessageType } from "../../../types/types";
 import type { IMessages } from "../../../types/types";
 
-type generalProperties = {
+export type generalProperties = {
   setActive: (active: boolean) => void;
   setAnimation: (animation: animationType) => void;
   active: boolean;
@@ -12,6 +13,15 @@ export type responseType = {
   status: boolean;
   users: string[];
   message: string;
+};
+
+export type EditMessageType = {
+  client: string;
+  wsRef: RefObject<WebSocket | null>;
+  setEditMessageModal: (active: editMessageType) => void;
+  setAnimation: (animation: animationType) => void;
+  editMessageModal: editMessageType;
+  animation: animationType;
 };
 
 export interface IActiveUsersModalProps extends generalProperties {
