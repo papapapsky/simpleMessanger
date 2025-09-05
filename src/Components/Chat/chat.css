@@ -6,7 +6,7 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  max-width: 250px;
+  max-width: 320px;
 
   margin-left: auto;
   justify-content: right;
@@ -107,7 +107,7 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-  max-width: 200px;
+  max-width: 320px;
 
   margin-right: auto;
   justify-content: left;
@@ -117,5 +117,5 @@
 }
 
 .timeDisplay {
-  color: rgba(255, 255, 255, 0.513);
+  color: rgba(255, 255, 255, 0.607);
 }

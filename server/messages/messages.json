@@ -1,100 +1,56 @@
 [
   {
+    "time": "15:03",
+    "messageType": "new message",
+    "edited": false,
+    "id": 1757084592877,
+    "type": "notify",
+    "user": "Gleb",
+    "message": "New user connection! - Gleb"
+  },
+  {
+    "time": "15:03",
+    "messageType": "new message",
+    "edited": false,
+    "id": 1757084595340,
+    "type": "notify",
+    "user": "Sasha",
+    "message": "New user connection! - Sasha"
+  },
+  {
     "messageType": "new message",
     "type": "notify",
-    "time": "15:26",
+    "edited": false,
+    "id": 1757084643641,
+    "time": "15:04",
     "status": true,
-    "message": "1254 disconnected from chat"
+    "message": "Gleb disconnected from chat"
   },
   {
-    "time": "15:26",
+    "time": "15:04",
     "messageType": "new message",
+    "edited": false,
+    "id": 1757084648002,
     "type": "notify",
-    "user": "zxf",
-    "message": "New user connection! - zxf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "15:26",
-    "user": "zxf",
-    "message": "zxfxzfxzf"
+    "user": "sf",
+    "message": "New user connection! - sf"
   },
   {
     "messageType": "new message",
     "type": "notify",
-    "time": "15:26",
+    "edited": false,
+    "id": 1757084652095,
+    "time": "15:04",
     "status": true,
-    "message": "zxf disconnected from chat"
+    "message": "sf disconnected from chat"
   },
   {
-    "time": "15:26",
     "messageType": "new message",
     "type": "notify",
-    "user": "zxf",
-    "message": "New user connection! - zxf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "15:26",
-    "user": "zxf",
-    "message": "21"
-  },
-  {
-    "time": "15:27",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "zxf",
-    "message": "New user connection! - zxf"
-  },
-  {
-    "time": "15:28",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "zxf",
-    "message": "New user connection! - zxf"
-  },
-  {
-    "time": "15:28",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "5125125",
-    "message": "New user connection! - 5125125"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "15:28",
-    "user": "zxf",
-    "message": "12"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "15:28",
-    "user": "zxf",
-    "message": "xzfzxf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "15:28",
-    "user": "zxf",
-    "message": "zxf"
-  },
-  {
-    "time": "15:28",
-    "messageType": "new message",
-    "type": "notify",
-    "user": "zxf",
-    "message": "New user connection! - zxf"
-  },
-  {
-    "messageType": "new message",
-    "type": "user",
-    "time": "15:28",
-    "user": "zxf",
-    "message": "xzfzxf"
+    "edited": false,
+    "id": 1757084653900,
+    "time": "15:04",
+    "status": true,
+    "message": "Sasha disconnected from chat"
   }
 ]

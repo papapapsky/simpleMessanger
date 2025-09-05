@@ -1,17 +1,26 @@
 export type messageHistoryType = IMessages;
 
 export interface IWsMessage {
-  messageType: "new user" | "user disconnect" | "new message" | "edit message";
+  messageType:
+    | "new user"
+    | "user disconnect"
+    | "new message"
+    | "edit message"
+    | "delete message";
   type: "user" | "notify";
+  id: number;
   status: boolean;
   user: string;
   time: string;
   message: string;
+  newMessages: IWsMessage[];
   newEditedMessages: IWsMessage[];
 }
 
 export interface IMessages {
   messageType: "notify" | "user";
+  edited: boolean;
+  id: number;
   type: string;
   time: string;
   user: string;
@@ -26,6 +35,12 @@ export interface ISendMessage {
 
 export type editMessageType = {
   active: boolean;
-  messageToEdit: string;
+  messageToEdit: number;
 };
+
+export type deleteMessageType = {
+  active: boolean;
+  messageToDelete: number;
+};
+
 export type animationType = "showAnimation" | "";

@@ -1,27 +1,40 @@
 import type { RefObject } from "react";
-import type { animationType, editMessageType } from "../../../types/types";
+import type {
+  animationType,
+  deleteMessageType,
+  editMessageType,
+} from "../../../types/types";
 import type { IMessages } from "../../../types/types";
 
-export type generalProperties = {
+export interface generalProperties {
   setActive: (active: boolean) => void;
   setAnimation: (animation: animationType) => void;
   active: boolean;
   animation: animationType;
-};
+}
 
-export type responseType = {
-  status: boolean;
-  users: string[];
-  message: string;
-};
-
-export type EditMessageType = {
+export interface EditMessageType {
   client: string;
   wsRef: RefObject<WebSocket | null>;
   setEditMessageModal: (active: editMessageType) => void;
   setAnimation: (animation: animationType) => void;
   editMessageModal: editMessageType;
   animation: animationType;
+}
+
+export interface IDeleteMessageProps {
+  active: boolean;
+  setAnimation: (animation: animationType) => void;
+  message: number;
+  wsRef: RefObject<WebSocket | null>;
+  client: string;
+  setProperties: (deleteMessageModal: deleteMessageType) => void;
+}
+
+export type responseType = {
+  status: boolean;
+  users: string[];
+  message: string;
 };
 
 export interface IActiveUsersModalProps extends generalProperties {

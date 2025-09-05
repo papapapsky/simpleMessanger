@@ -13,9 +13,11 @@ export const onmessage = ({ event, setMessages }: props) => {
   const message: IWsMessage = JSON.parse(event.data);
   switch (message.messageType) {
     case "new message": {
-      if (!message) return false;
+      if (!message) return;
       const newMessage: IMessages = {
+        id: message.id,
         messageType: message.type,
+        edited: false,
         type: message.type,
         time: currentDate,
         user: message.user,
@@ -26,11 +28,18 @@ export const onmessage = ({ event, setMessages }: props) => {
     }
 
     case "edit message": {
-      if (!message) return false;
-      console.log;
+      if (!message) return;
       setMessages(message.newEditedMessages as any);
       break;
     }
+    case "delete message": {
+      if (!message) return;
+
+      setMessages(message.newMessages as any);
+
+      break;
+    }
+
     default:
       console.log("undefined type -", message.type);
   }

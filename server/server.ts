@@ -54,10 +54,13 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
   if (!query.name) return;
 
   const dateOnConnection = curretDate();
+  const uniqueID = Date.now();
 
   const connectNotify: messageHistoryType = {
     time: dateOnConnection,
     messageType: "new message",
+    edited: false,
+    id: uniqueID,
     type: "notify",
     user: query.name,
     message: `New user connection! - ${query.name}`,
@@ -89,10 +92,13 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
         const messages = await fs.readFile(messagesSrc, "utf-8");
         const parsedMessages: messageHistoryType[] = JSON.parse(messages);
         const dateOnMessage = curretDate();
+        const uniqueID = Date.now();
 
         const newMessage: messageHistoryType = {
           messageType: "new message",
           type: "user",
+          id: uniqueID,
+          edited: false,
           time: dateOnMessage,
           user: message.user,
           message: message.message,
@@ -134,15 +140,12 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
         const messagesList = await fs.readFile(messagesSrc, "utf-8");
         const parsedList: messageHistoryType[] = JSON.parse(messagesList);
         parsedList.forEach((user) => {
-          if (
-            user.message === message.messageToEdit &&
-            user.user === message.user
-          ) {
+          if (user.id === message.id) {
             user.message = message.message;
+            user.edited = true;
             return;
           }
         });
-        console.log(parsedList);
         await fs.writeFile(messagesSrc, JSON.stringify(parsedList, null, 2));
 
         const messageToEdit = {
@@ -158,6 +161,32 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
         break;
       }
 
+      case "delete message": {
+        console.log(message.id, message.user);
+        if (!message.id) return;
+
+        const messagesList = await fs.readFile(messagesSrc, "utf-8");
+        const parsedList: messageHistoryType[] = JSON.parse(messagesList);
+        const newMessages: messageHistoryType[] = parsedList.filter(
+          (user) => user.id !== message.id
+        );
+        console.log(newMessages);
+        console.log("asdasd", parsedList);
+        await fs.writeFile(messagesSrc, JSON.stringify(newMessages, null, 2));
+
+        const sendNewMessages = {
+          messageType: "delete message",
+          newMessages: newMessages,
+        };
+
+        wss.clients.forEach((user) => {
+          if (user.readyState === WebSocket.OPEN) {
+            user.send(JSON.stringify(sendNewMessages));
+          }
+        });
+        break;
+      }
+
       default:
         console.log("invalid type -", message.type);
     }
@@ -166,10 +195,13 @@ wss.on("connection", async (ws: WebSocket, req: any) => {
   ws.on("close", async () => {
     if (!query.name) return;
     const dateOnDisconnect = curretDate();
+    const uniqueID = Date.now();
 
     const userLeaveMessage: messageHistoryType = {
       messageType: "new message",
       type: "notify",
+      edited: false,
+      id: uniqueID,
       time: dateOnDisconnect,
       status: true,
       message: `${query.name} disconnected from chat`,

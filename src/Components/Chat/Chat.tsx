@@ -9,9 +9,15 @@ import { Scroller } from "./components/scroller/Scroller";
 import { Messages } from "./components/layout/Messages";
 import { ActiveUsersModal } from "./components/modal/ActiveUsersModal";
 
-import type { IMessages, animationType, editMessageType } from "./types/types";
+import type {
+  IMessages,
+  animationType,
+  editMessageType,
+  deleteMessageType,
+} from "./types/types";
 import { EraseChatConfirm } from "./components/modal/EraseChatConfirm";
 import { EditMessage } from "./components/modal/EditMessage";
+import { DeleteMessage } from "./components/modal/DeleteMessage";
 
 export const Chat = () => {
   const WS_API_URL = import.meta.env.VITE_API_WS_URL;
@@ -19,9 +25,14 @@ export const Chat = () => {
   const [usersModal, setUsersModal] = useState<boolean>(false);
   const [eraseChatModal, setEraseChatModal] = useState<boolean>(false);
   const [editMessageModal, setEditMessageModal] = useState<editMessageType>({
-    messageToEdit: "",
+    messageToEdit: 0,
     active: false,
   });
+  const [deleteMessageModal, setDeleteMessageModal] =
+    useState<deleteMessageType>({
+      messageToDelete: 0,
+      active: false,
+    });
   const [historyLoading, setHistoryLoading] = useState<boolean>(false);
   const [client, setClient] = useState<string>("");
   const [messages, setMessages] = useState<IMessages[]>([]);
@@ -94,6 +105,16 @@ export const Chat = () => {
           animation={animation}
         />
       )}
+      {deleteMessageModal.active && (
+        <DeleteMessage
+          active={deleteMessageModal.active}
+          wsRef={wsRef}
+          client={client}
+          message={deleteMessageModal.messageToDelete}
+          setProperties={setDeleteMessageModal}
+          setAnimation={setAnimation}
+        />
+      )}
       <main className="flex-1 p-6 max-w-5xl mx-auto w-full relative">
         <div className="chat-container bg-gray-800 rounded-xl shadow-2xl flex flex-col border border-gray-700">
           <div className="chat flex-1 p-4 overflow-y-auto" ref={chatScrolleRef}>
@@ -105,6 +126,8 @@ export const Chat = () => {
               messages.map((value, index) => (
                 <div key={index}>
                   <Messages
+                    deleteMessageModal={deleteMessageModal}
+                    setDeleteMessageModal={setDeleteMessageModal}
                     editMessageModal={editMessageModal}
                     setEditMessageModal={setEditMessageModal}
                     value={value}

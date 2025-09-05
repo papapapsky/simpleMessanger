@@ -35,3 +35,10 @@
     transform: scale(1) translateY(0) rotateY(180deg);
   }
 }
+
+/* @media (max-width: 450px) {
+  .additionalInfo {
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+} */
